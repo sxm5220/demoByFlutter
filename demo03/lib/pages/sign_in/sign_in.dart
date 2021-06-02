@@ -125,7 +125,10 @@ class _SignInPageState extends State<SignInPage> {
                 //注册
                 btnFlatButtonWidget(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign-up');
+                    Navigator.pushNamed(
+                      context,
+                      '/sign-up',
+                    );
                   },
                   gbColor: AppColors.thirdElement,
                   title: '注册',
@@ -175,6 +178,78 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   //第三方登陆
+  Widget _buildThirdPartyLogin() {
+    return Container(
+      width: screenWidth(295),
+      margin: EdgeInsets.only(
+        bottom: screenHeight(40),
+      ),
+      child: Column(
+        children: [
+          Text(
+            '或使用三方登录',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.primaryText,
+              fontFamily: 'Avenir',
+              fontWeight: FontWeight.w400,
+              fontSize: screenFontSize(16),
+            ),
+          ),
+          //按钮
+          Padding(
+            padding: EdgeInsets.only(
+              top: screenHeight(20),
+            ),
+            child: Row(
+              children: [
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: 'twitter',
+                ),
+                Spacer(),
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: 'google',
+                ),
+                Spacer(),
+                btnFlatButtonBorderOnlyWidget(
+                  onPressed: () {},
+                  width: 88,
+                  iconFileName: 'facebook',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //注册按钮
+  Widget _buildSignUpBtn() {
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: screenHeight(20),
+      ),
+      child: btnFlatButtonWidget(
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            '/sign-up',
+          );
+        },
+        width: 294,
+        gbColor: AppColors.secondaryElement,
+        fontColor: AppColors.primaryText,
+        title: '注册',
+        fontWeight: FontWeight.w500,
+        fontSize: 16,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +257,13 @@ class _SignInPageState extends State<SignInPage> {
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
-          children: [_buildLogo(), _buildInputForm()],
+          children: [
+            _buildLogo(),
+            _buildInputForm(),
+            Spacer(),
+            _buildThirdPartyLogin(),
+            _buildSignUpBtn(),
+          ],
         ),
       ),
     );

@@ -2,7 +2,6 @@ import 'package:demo03/common/utils/utils.dart';
 import 'package:demo03/common/values/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
