@@ -4,16 +4,14 @@ import 'package:flutter/gestures.dart';
 class TextValue extends StatelessWidget {
   const TextValue({Key key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildDemo1() {
     return Container(
-      child: Container(
-          width: 400,
-          height: 800,
-          color: Colors.white.withOpacity(.3),
-          child: Column(
-            children: [
-              /* Text(
+      width: 400,
+      height: 800,
+      color: Colors.white.withOpacity(.3),
+      child: Column(
+        children: [
+          /* Text(
                 '嘿嘿阿拉斯加短发就是大飞离开家啊说大飞ppddd',
                 overflow: TextOverflow.visible,
                 style: TextStyle(
@@ -89,52 +87,118 @@ class TextValue extends StatelessWidget {
                       TextSpan(text: "莫毛毛密码"),
                     ]),
               ),*/
-              Text.rich(
+          Text.rich(
+            TextSpan(
+              text: "回复",
+              style: TextStyle(
+                fontSize: 18,
+                color: Color(0xFF999999),
+              ),
+              children: [
                 TextSpan(
-                  text: "回复",
+                  text: "@老孟：",
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF999999),
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
                   ),
-                  children: [
-                    TextSpan(
-                      text: "@老孟：",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print("ontap");
-                        },
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      print("ontap");
+                    },
+                ),
+                TextSpan(text: "你好，嘿嘿！"),
+              ],
+            ),
+          ),
+          Text.rich(
+            TextSpan(
+              text: "登陆即代表同意并阅读",
+              style: TextStyle(
+                fontSize: 15,
+                color: Color(0xFF999999),
+              ),
+              children: [
+                TextSpan(
+                    text: "《服务协议》",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
                     ),
-                    TextSpan(text: "你好，嘿嘿！"),
-                  ],
-                ),
-              ),
-              Text.rich(
-                TextSpan(
-                  text: "登陆即代表同意并阅读",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Color(0xFF999999),
-                  ),
-                  children: [
-                    TextSpan(
-                        text: "《服务协议》",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            print("Click==>");
-                          }),
-                  ],
-                ),
-              ),
-            ],
-          )),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        print("Click==>");
+                      }),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDemo2() {
+    return Container(
+      child: Text(
+        'Hello Flutter It is Awesome WOW',
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 50.0,
+          fontWeight: FontWeight.w300,
+          letterSpacing: 2.0,
+          wordSpacing: 20.0,
+          decoration: TextDecoration.underline,
+          decorationStyle: TextDecorationStyle.dotted,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDemo3(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(20.0),
+      width: double.infinity,
+      height: 300.0,
+      color: Colors.red,
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(20.0),
+      child: FlutterLogo(
+        size: 100.0,
+      ),
+    );
+    /*return Container(
+      child: Center(
+        child: Text(
+          'hello flutter',
+          textAlign: TextAlign.center,
+        ),
+      ),
+      height: 350, //MediaQuery.of(context).size.height,
+      width: 350, //MediaQuery.of(context).size.width,
+      margin: EdgeInsets.all(25.0),
+      decoration: BoxDecoration(
+          color: Colors.yellow,
+          borderRadius: BorderRadius.circular(60.0),
+          border: Border.all(width: 5, color: Colors.red)),
+      /*decoration: ShapeDecoration(
+        color: Colors.white,
+        shadows: [
+          BoxShadow(color: Colors.blue, blurRadius: 10.0),
+        ],
+        shape: Border.all(color: Colors.white, width: 2.0),
+      ),*/ //FlutterLogoDecoration(),
+    );*/
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _buildDemo3(context),
+      ),
     );
   }
 }
