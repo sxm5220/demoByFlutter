@@ -34,8 +34,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildMaterialBtn() {
     return MaterialButton(
       minWidth: 240,
       height: 48,
@@ -56,6 +55,114 @@ class _ButtonDemoState extends State<ButtonDemo> {
       },
       child: _buildBtn(),
       color: Colors.blue,
+    );
+  }
+
+  Widget _buildRaiseBtn() {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+      onPressed: () {},
+      color: Colors.yellow,
+      disabledTextColor: Colors.grey,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      elevation: 20.0,
+      splashColor: Colors.green,
+      highlightColor: Colors.red,
+      highlightElevation: 1.0,
+      child: Text('Raised Btn'),
+    );
+  }
+
+  Widget _buildMaterialWithBtn() {
+    return MaterialButton(
+      onPressed: () {},
+      minWidth: 250,
+      colorBrightness: Brightness.dark,
+      color: Colors.deepOrangeAccent,
+      elevation: 20.0,
+      splashColor: Colors.green,
+      highlightElevation: 1,
+      child: Text('Material btn'),
+    );
+  }
+
+  Widget _buildFlatBtn() {
+    return FlatButton(
+      onPressed: () {},
+      child: Text('Raised btn'),
+      colorBrightness: Brightness.dark,
+      color: Colors.deepOrangeAccent,
+      splashColor: Colors.green,
+      highlightColor: Colors.red,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.horizontal(
+              left: Radius.circular(20), right: Radius.circular(1))),
+    );
+  }
+
+  Widget _buildOutlineBtn() {
+    return OutlineButton(
+      onPressed: () {},
+      borderSide: BorderSide(
+        width: 5,
+        color: Colors.deepPurpleAccent,
+      ),
+      color: Colors.deepPurpleAccent,
+      highlightedBorderColor: Colors.purple,
+      splashColor: Colors.green,
+      child: Text('Raised btn'),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20.0), bottom: Radius.circular(1))),
+    );
+  }
+
+  Widget _buildIconBtn() {
+    return IconButton(
+      onPressed: () {},
+      icon: Icon(
+        Icons.build,
+        size: 40,
+      ),
+      color: Colors.purple,
+      splashColor: Colors.yellow,
+    );
+  }
+
+  Widget _buildColum() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.orange,
+          child: Icon(
+            Icons.mic,
+            size: 30.0,
+            color: Colors.white,
+          ),
+        ),
+        FloatingActionButton(
+          onPressed: () {},
+          mini: true,
+          backgroundColor: Colors.green,
+          child: Icon(
+            Icons.mic,
+            size: 30,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:
+          _buildColum(), //_buildIconBtn(), //_buildOutlineBtn(), //_buildFlatBtn(), //_buildMaterialWithBtn(), //_buildRaiseBtn(), //_buildBtn(), //_buildMaterialBtn(),
     );
   }
 }

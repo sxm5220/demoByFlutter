@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test2/ui/alertDialog.dart';
 import 'package:flutter_test2/ui/button.dart';
+import 'package:flutter_test2/ui/container.dart';
 import 'package:flutter_test2/ui/drawingboard.dart';
 import 'package:flutter_test2/ui/flowMenu.dart';
 import 'package:flutter_test2/ui/flowPopMenu.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_test2/ui/popupMenu.dart';
 import 'package:flutter_test2/ui/progress.dart';
 import 'package:flutter_test2/ui/radio.dart';
 import 'package:flutter_test2/ui/slider.dart';
+import 'package:flutter_test2/ui/stack.dart';
 import 'package:flutter_test2/ui/switch.dart';
 import 'package:flutter_test2/ui/text.dart';
 
@@ -107,10 +109,12 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),*/
-        body: Center(child: TextValue() //AlertDialogDemo() //PopupMenuBtnDemo()
-            //ListViewDemo() //ButtonDemo() //FlowMenuDemo() //DemoFlowPopMenu()
-            //LisetDemo() //SwitchDemo() //SwitchDemo() //SliderDemo() //RadioValue(),
-            ),
+        body: Center(
+          child: TextValue(), //StackDemo(), //ButtonDemo() //ListViewDemo()
+          //ContainerUI()  //AlertDialogDemo() //PopupMenuBtnDemo()
+          //FlowMenuDemo() //DemoFlowPopMenu()
+          //LisetDemo() //SwitchDemo() //SwitchDemo() //SliderDemo() //RadioValue(),
+        ),
       ),
     );
   }

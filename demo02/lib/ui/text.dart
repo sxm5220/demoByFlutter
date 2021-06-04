@@ -157,47 +157,31 @@ class TextValue extends StatelessWidget {
     );
   }
 
-  Widget _buildDemo3(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(20.0),
-      width: double.infinity,
-      height: 300.0,
-      color: Colors.red,
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(20.0),
-      child: FlutterLogo(
-        size: 100.0,
+  Widget _buildTextField3() {
+    return TextField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          // borderSide: BorderSide(
+          //   width: 0,
+          //   style: BorderStyle.none,
+          // ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        filled: true,
+        hintStyle: TextStyle(color: Colors.grey[400]),
+        hintText: 'Type in your text',
+        fillColor: Colors.white,
       ),
     );
-    /*return Container(
-      child: Center(
-        child: Text(
-          'hello flutter',
-          textAlign: TextAlign.center,
-        ),
-      ),
-      height: 350, //MediaQuery.of(context).size.height,
-      width: 350, //MediaQuery.of(context).size.width,
-      margin: EdgeInsets.all(25.0),
-      decoration: BoxDecoration(
-          color: Colors.yellow,
-          borderRadius: BorderRadius.circular(60.0),
-          border: Border.all(width: 5, color: Colors.red)),
-      /*decoration: ShapeDecoration(
-        color: Colors.white,
-        shadows: [
-          BoxShadow(color: Colors.blue, blurRadius: 10.0),
-        ],
-        shape: Border.all(color: Colors.white, width: 2.0),
-      ),*/ //FlutterLogoDecoration(),
-    );*/
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _buildDemo3(context),
+        child: _buildTextField3(), //_buildDemo2(),
       ),
     );
   }
