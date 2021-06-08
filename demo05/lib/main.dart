@@ -1,10 +1,14 @@
 import 'package:demo05/alertDialog.dart';
+import 'package:demo05/boxDecoration.dart';
 import 'package:demo05/card.dart';
+import 'package:demo05/chartAnimation.dart';
 import 'package:demo05/cupertinoActivityIndicator.dart';
 import 'package:demo05/cupertinoAlertDialog.dart';
 import 'package:demo05/cupertinoButton.dart';
 import 'package:demo05/cupertinoTabScaffold.dart';
 import 'package:demo05/drawerLayout.dart';
+import 'package:demo05/fontAnimation.dart';
+import 'package:demo05/listView.dart';
 import 'package:demo05/popupMenuBtn.dart';
 import 'package:demo05/textBtn.dart';
 import 'package:demo05/floatingActionBtn.dart';
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
           // primaryColor: Colors.white,
         ),
         home:
-            WidgetDemo() //WrapDemo() //CupertinoTabScaffoldDemo() //CupertinoAlertDialogDemo() //CupertinoActivityIndicatorDemo() //CardDemo() //TextFieldDemo() //AlertDialogDemo(), //PopupMenuBtn() //TextBtn() //FloatingActionBtn() //DrawerLayout() //MyHomePage(title: 'HttpClient请求'),
+            ChartAnimationDemo() //FontAnimationDemo() //BoxDecorationDemo() //ListViewDemo() //WidgetDemo() //WrapDemo() //CupertinoTabScaffoldDemo() //CupertinoAlertDialogDemo() //CupertinoActivityIndicatorDemo() //CardDemo() //TextFieldDemo() //AlertDialogDemo(), //PopupMenuBtn() //TextBtn() //FloatingActionBtn() //DrawerLayout() //MyHomePage(title: 'HttpClient请求'),
         );
   }
 }
