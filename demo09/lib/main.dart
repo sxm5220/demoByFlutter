@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:demo09/second_page.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +12,71 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fancy Bottom Navigation',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
+        title: 'Fancy Bottom Navigation',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: HomeScreen() //MyHomePage(title: 'Fancy Bottom Navigation'),
+        );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _page = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        items: [
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+        ],
+        key: _bottomNavigationKey,
+        index: 0,
+        height: 70.0,
+        color: Colors.white,
+        buttonBackgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 600),
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
       ),
-      home: MyHomePage(title: 'Fancy Bottom Navigation'),
+      body: Container(
+        color: Colors.blueAccent,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(_page.toString(), textScaleFactor: 4.0),
+              TextButton(
+                  onPressed: () {
+                    (_bottomNavigationKey.currentState
+                            as CurvedNavigationBarState)
+                        .setPage(1);
+                  },
+                  child: Text('Go to page of index 1'))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
+/*
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -123,3 +180,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
