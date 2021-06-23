@@ -2,7 +2,7 @@ import 'package:demo12/style/style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'homePage.dart';
+import 'pages/homePage.dart';
 
 void main() {
   //自定义报错页面
