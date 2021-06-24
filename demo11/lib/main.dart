@@ -19,7 +19,19 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: {
         CustomLocalizations.delegate,
       },
-      supportedLocales: [Locale("en"), Locale("zh")],
+      supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
+      localeResolutionCallback: (locale, supportedLocales) {
+        print('deviceLocale:$locale');
+        print('languageCode:${locale!.languageCode}');
+        print('countryCode:${locale.countryCode}');
+        for (var supportedLocales in supportedLocales) {
+          if (supportedLocales.languageCode == locale.languageCode &&
+              supportedLocales.countryCode == locale.countryCode) {
+            return supportedLocales;
+          }
+        }
+        return supportedLocales.first;
+      },
       home: MyHomePage(
         title: "多语言",
       ),
@@ -37,19 +49,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -85,20 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              CustomLocalizations.of(context).translate('Home')!,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              CustomLocalizations.of(context).t('Hello')!,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

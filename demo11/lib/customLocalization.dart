@@ -1,24 +1,27 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomLocalizations {
   final Locale locale;
 
   CustomLocalizations(this.locale);
 
-  static Map<String, Map<String, String>> _localizedValues = {
-    "en": {
-      "Home": "Home",
-      "Hello": "Hello",
-    },
-    "zh": {
-      "Home": "首页",
-      "Hello": "你好",
-    }
-  };
+  Map<String, String>? localizedValues;
 
-  String? translate(String key) {
-    return _localizedValues[locale.languageCode]![key];
+  Future<bool> loadJSON() async {
+    String jsonString =
+        await rootBundle.loadString('language/${locale.languageCode}.json');
+    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    localizedValues = jsonMap.map((key, value) {
+      return MapEntry(key, value.toString());
+    });
+    return true;
+  }
+
+  String? t(String key) {
+    //return _localizedValues[locale.languageCode]![key];
+    return localizedValues![key];
   }
 
   static CustomLocalizations of(BuildContext context) {
@@ -36,8 +39,11 @@ class CustomLocalizationsDelegate
   }
 
   @override
-  Future<CustomLocalizations> load(Locale locale) {
-    return SynchronousFuture(CustomLocalizations(locale));
+  Future<CustomLocalizations> load(Locale locale) async {
+    // return SynchronousFuture(CustomLocalizations(locale));
+    CustomLocalizations localizations = CustomLocalizations(locale);
+    await localizations.loadJSON();
+    return localizations;
   }
 
   @override
