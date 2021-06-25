@@ -11,9 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       //国际化
       localizationsDelegates: {
@@ -32,6 +31,7 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
+
       home: MyHomePage(
         title: "多语言",
       ),
