@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:demo13/constants/Constants.dart';
 import 'package:demo13/events/changeThemeEvent.dart';
-import 'package:demo13/pages/pages.dart';
 import 'package:demo13/util/util.dart';
 
 void main() {
@@ -18,9 +17,6 @@ class MyOSCClient extends StatefulWidget {
 }
 
 class _MyOSCClientState extends State<MyOSCClient> {
-  final appBarTitles = ['资讯', '动态', '发现', '我的'];
-  var pages = [NewsListPage(), TweetsListPage(), DiscoveryPage(), MyInfoPage()];
-
   Color themeColor = ThemeUtils.currentColorTheme;
   int _tabIndex = 0;
 
@@ -42,42 +38,14 @@ class _MyOSCClientState extends State<MyOSCClient> {
     });
   }
 
-  Widget _buildBottomNavigationBar() {
-    return CupertinoTabBar(
-      activeColor: themeColor,
-      items: [
-        BottomNavigationBarItem(
-          icon: tabWithIcon(0, _tabIndex),
-          label: tabWithTitle(0, _tabIndex, appBarTitles),
-        ),
-        BottomNavigationBarItem(
-          icon: tabWithIcon(1, _tabIndex),
-          label: tabWithTitle(1, _tabIndex, appBarTitles),
-        ),
-        BottomNavigationBarItem(
-          icon: tabWithIcon(2, _tabIndex),
-          label: tabWithTitle(2, _tabIndex, appBarTitles),
-        ),
-        BottomNavigationBarItem(
-          icon: tabWithIcon(3, _tabIndex),
-          label: tabWithTitle(3, _tabIndex, appBarTitles),
-        ),
-      ],
-      currentIndex: _tabIndex,
-      onTap: (value) {
-        setState(() {
-          _tabIndex = value;
-        });
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: themeColor),
       home: Scaffold(
         appBar: AppBar(
+          toolbarOpacity: 1.0,
+          shadowColor: Colors.white10,
           title: Text(
             appBarTitles[_tabIndex],
             style: TextStyle(color: Colors.white),
@@ -88,7 +56,12 @@ class _MyOSCClientState extends State<MyOSCClient> {
           children: pages,
           index: _tabIndex,
         ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
+        bottomNavigationBar:
+            bottomNavigationBar(themeColor, _tabIndex, (value) {
+          setState(() {
+            _tabIndex = value;
+          });
+        }),
         drawer: MyDrawer(),
       ),
     );

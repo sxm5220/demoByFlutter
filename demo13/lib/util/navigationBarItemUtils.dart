@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:demo13/pages/pages.dart';
 
 Image navBarItemWithImage(String name) =>
     Image.asset('assets/images/nav/$name', width: 20.0, height: 20.0);
@@ -37,4 +38,34 @@ String tabWithTitle(int currentIndex, int tabIndex, List<String> tabTitles) {
   //       ? TextStyle(color: Color(0xff63ca6c))
   //       : TextStyle(color: Color(0xff969696)),
   // );
+}
+
+final appBarTitles = ['资讯', '动态', '发现', '我的'];
+var pages = [NewsListPage(), TweetsListPage(), DiscoveryPage(), MyInfoPage()];
+
+Widget bottomNavigationBar(
+    Color activeColor, int tabIndex, ValueChanged<int>? onTap) {
+  return CupertinoTabBar(
+    activeColor: activeColor, //themeColor,
+    items: [
+      BottomNavigationBarItem(
+        icon: tabWithIcon(0, tabIndex),
+        label: tabWithTitle(0, tabIndex, appBarTitles),
+      ),
+      BottomNavigationBarItem(
+        icon: tabWithIcon(1, tabIndex),
+        label: tabWithTitle(1, tabIndex, appBarTitles),
+      ),
+      BottomNavigationBarItem(
+        icon: tabWithIcon(2, tabIndex),
+        label: tabWithTitle(2, tabIndex, appBarTitles),
+      ),
+      BottomNavigationBarItem(
+        icon: tabWithIcon(3, tabIndex),
+        label: tabWithTitle(3, tabIndex, appBarTitles),
+      ),
+    ],
+    currentIndex: tabIndex,
+    onTap: onTap,
+  );
 }

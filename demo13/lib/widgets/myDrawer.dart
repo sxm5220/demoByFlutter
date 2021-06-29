@@ -10,9 +10,7 @@ class MyDrawer extends StatelessWidget {
   static const double IMAGE_ICON_WIDTH = 30.0;
   // 菜单后面的箭头的图标大小
   static const double ARROW_ICON_WIDTH = 16.0;
-  // 菜单后面的箭头图片
-  var rightArrowIcon = imageWithAsset(
-      'assets/images/ic_arrow_right.png', ARROW_ICON_WIDTH, ARROW_ICON_WIDTH);
+
 // 菜单
   List<Map> menuTitles = [
     {'title': '发布动弹', 'icon': 'assets/images/leftmenu/icon_me_file.png'},
@@ -20,13 +18,6 @@ class MyDrawer extends StatelessWidget {
     {'title': '设置', 'icon': 'assets/images/leftmenu/icon_me_file.png'},
     {'title': '关于', 'icon': 'assets/images/leftmenu/icon_me_file.png'}
   ];
-
-  Widget iconImage(path) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(2.0, 0.0, 6.0, 0.0),
-      child: imageWithAsset(path, 28, 28),
-    );
-  }
 
   // const MyDrawer({Key? key}) : super(key: key);
   Widget _buildRenderRow(BuildContext context, int index) {
@@ -55,7 +46,10 @@ class MyDrawer extends StatelessWidget {
       child: Row(
         children: [
           // 菜单item的图标
-          iconImage(menuTitles[index]['icon']),
+          Padding(
+            padding: EdgeInsets.fromLTRB(2.0, 0.0, 6.0, 0.0),
+            child: imageWithAsset(menuTitles[index]['icon'], 28, 28),
+          ),
           // 菜单item的文本，需要
           Expanded(
             child: Text(
@@ -63,7 +57,9 @@ class MyDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 15.0),
             ),
           ),
-          rightArrowIcon
+          // 菜单后面的箭头图片
+          imageWithAsset('assets/images/ic_arrow_right.png', ARROW_ICON_WIDTH,
+              ARROW_ICON_WIDTH)
         ],
       ),
     );
@@ -73,27 +69,19 @@ class MyDrawer extends StatelessWidget {
         switch (index) {
           case 0:
             // 发布动弹
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-              return PublishTweetPage();
-            }));
+            navPush(context, PublishTweetPage());
             break;
           case 1:
             // 小黑屋
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-              return BlackHousePage();
-            }));
+            navPush(context, BlackHousePage());
             break;
           case 2:
             // 设置
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-              return SettingPage();
-            }));
+            navPush(context, SettingPage());
             break;
           case 3:
             // 关于
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-              return AboutPage();
-            }));
+            navPush(context, AboutPage());
             break;
 
           default:
