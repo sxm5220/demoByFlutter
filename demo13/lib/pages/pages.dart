@@ -11,3 +11,4 @@ export 'aboutPage.dart';
 export 'newsDetailPage.dart';
 export 'commonWebPage.dart';
 export 'loginPage.dart';
+export 'offlineActivityPage.dart';
