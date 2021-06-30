@@ -41,6 +41,7 @@ class _MyOSCClientState extends State<MyOSCClient> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: themeColor),
       home: Scaffold(
         appBar: AppBar(
