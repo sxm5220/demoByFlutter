@@ -50,55 +50,56 @@ class _SplashWidgetState extends State<SplashWidget> {
                   ),
                 ),
                 SafeArea(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment(1.0, 1.0),
-                      child: Container(
-                        margin: EdgeInsets.only(right: 30, top: 20),
-                        padding: EdgeInsets.only(
-                            left: 10, right: 10, top: 2, bottom: 2),
-                        child: CountDownWidget(
-                          onCountDownFinishCallBack: (value) {
-                            if (value) {
-                              setState(() {
-                                showAd = false;
-                              });
-                            }
-                          },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Align(
+                        alignment: Alignment(1.0, 1.0),
+                        child: Container(
+                          margin: EdgeInsets.only(right: 30, top: 20),
+                          padding: EdgeInsets.only(
+                              left: 10, right: 10, top: 2, bottom: 2),
+                          child: CountDownWidget(
+                            onCountDownFinishCallBack: (value) {
+                              if (value) {
+                                setState(() {
+                                  showAd = false;
+                                });
+                              }
+                            },
+                          ),
+                          decoration: BoxDecoration(
+                              color: Color(0xffEDEDED),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
                         ),
-                        decoration: BoxDecoration(
-                            color: Color(0xffEDEDED),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            Constant.ASSETS_IMG + 'ic_launcher.png',
-                            width: 50,
-                            height: 50,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Hi,豆芽',
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              Constant.ASSETS_IMG + 'ic_launcher.png',
+                              width: 50,
+                              height: 50,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Hi,豆芽',
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )),
+                    ],
+                  ),
+                ),
               ],
             ),
             width: ScreenUtils.screenW(context),

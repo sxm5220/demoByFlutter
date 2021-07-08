@@ -2,7 +2,7 @@ library pages;
 
 export 'splash/splashWidget.dart';
 export 'containerPage.dart';
-export 'shopPage.dart';
+export 'shop/shopPage.dart';
 export 'home/homePage.dart';
 export 'movie/bookAudioVideoPage.dart';
 export 'group/groupPage.dart';
