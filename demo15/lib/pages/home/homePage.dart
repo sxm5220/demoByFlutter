@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:demo15/pages/home/home_app_bar.dart' as myapp;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,9 +14,10 @@ class HomePage extends StatelessWidget {
                 (BuildContext context, bool innerBoxIsScrolled) {
               return [
                 SliverOverlapAbsorber(
+                  //child: myapp.SliverAppBar(pinned: true,expandedHeight: 120.0,primary: true,titleSpacing: 0.0,backgroundColor: Colors.white,)
                   handle:
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                )
+                ),
               ];
             },
             body: TabBarView(
