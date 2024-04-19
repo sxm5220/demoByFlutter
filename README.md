@@ -102,6 +102,6 @@
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d17/main2-01.png" width="200" alt="截图" />
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d17/main2-01-1.png" width="200" alt="截图" />
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d17/main2-02.png" width="200" alt="截图" />
-<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d17/main3-01.mp4" width="200" alt="截图" />
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d17/main3-01.png" width="200" alt="截图" />
 </p>
 
