@@ -1,20 +1,19 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+class SyMapPage extends StatefulWidget {
+  const SyMapPage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<SyMapPage> createState() => _SyMapPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SyMapPageState extends State<SyMapPage> {
   final double _initFabHeight = 120.0;
   double _fabHeight = 120.0;
   double? _panelHeightOpen;
@@ -22,12 +21,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildBody() {
     return FlutterMap(
-      options: MapOptions(
-        center: LatLng(39.933721, 119.480552),
+      options: const MapOptions(
+        center: LatLng(51.5, -0.09),
         zoom: 13,
         maxZoom: 15,
       ),
-      layers: [
+      children: [
+        TileLayer(
+          urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          subdomains: ['a', 'b', 'c'],
+        ),
+        const MarkerLayer(markers: [
+          Marker(
+            point: LatLng(39.933721, 119.480552),
+            child: Icon(
+              Icons.location_on,
+              color: Colors.blue,
+              size: 48.0,
+            ),
+          )
+        ])
+      ],
+      /*layers: [
         TileLayerOptions(
             urlTemplate: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'),
         MarkerLayerOptions(markers: [
@@ -41,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 60,
           ),
         ]),
-      ],
+      ],*/
     );
   }
 
@@ -75,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ListView(
         controller: sc,
         children: [
-          SizedBox(height: 12.0),
+          const SizedBox(height: 12.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -84,12 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 5,
                 decoration: BoxDecoration(
                     color: Colors.grey[300],
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                    borderRadius: const BorderRadius.all(Radius.circular(12))),
               )
             ],
           ),
-          SizedBox(height: 18),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const SizedBox(height: 18),
+          const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
               'Explore Pittsburgh',
               style: TextStyle(
@@ -98,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ]),
-          SizedBox(height: 36),
+          const SizedBox(height: 36),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -108,23 +123,23 @@ class _MyHomePageState extends State<MyHomePage> {
               _buildBtn("More", Icons.more_horiz, Colors.green),
             ],
           ),
-          SizedBox(height: 36),
+          const SizedBox(height: 36),
           Container(
-            padding: EdgeInsets.only(left: 24, right: 24),
+            padding: const EdgeInsets.only(left: 24, right: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Images',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CachedNetworkImage(
                       imageUrl:
-                          'https://images.fineartamerica.com/images-medium-large-5/new-pittsburgh-emmanuel-panagiotakis.jpg',
+                          'https://cdn.pixabay.com/photo/2016/08/11/23/48/pnc-park-1587285_1280.jpg',
                       height: 120,
                       width: (MediaQuery.of(context).size.width - 48) / 2 - 2,
                       fit: BoxFit.cover,
@@ -141,10 +156,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          SizedBox(height: 36),
+          const SizedBox(height: 36),
           Container(
-            padding: EdgeInsets.only(left: 24, right: 24),
-            child: Column(
+            padding: const EdgeInsets.only(left: 24, right: 24),
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -159,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
         ],
@@ -170,68 +185,80 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     _panelHeightOpen = MediaQuery.of(context).size.height * .80;
-    return Material(
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          SlidingUpPanel(
-            maxHeight: _panelHeightOpen!,
-            minHeight: _panelHeightClosed,
-            parallaxEnabled: true,
-            parallaxOffset: .5,
-            body: _buildBody(),
-            panelBuilder: (sc) => _buildPanel(sc),
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(18), topRight: Radius.circular(18)),
-            onPanelSlide: (position) {
-              setState(() {
-                _fabHeight =
-                    position * (_panelHeightOpen! - _panelHeightClosed) +
-                        _initFabHeight;
-              });
-            },
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_rounded,
           ),
-          Positioned(
-            right: 20,
-            bottom: _fabHeight,
-            child: FloatingActionButton(
-              child: Icon(
-                Icons.gps_fixed,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {},
-              backgroundColor: Colors.white,
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: Material(
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            SlidingUpPanel(
+              // color: Colors.black,
+              maxHeight: _panelHeightOpen!,
+              minHeight: _panelHeightClosed,
+              parallaxEnabled: true,
+              parallaxOffset: .5,
+              body: _buildBody(),
+              panelBuilder: (sc) => _buildPanel(sc),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(18), topRight: Radius.circular(18)),
+              onPanelSlide: (position) {
+                setState(() {
+                  _fabHeight =
+                      position * (_panelHeightOpen! - _panelHeightClosed) +
+                          _initFabHeight;
+                });
+              },
             ),
-          ),
-          Positioned(
-            top: 0,
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).padding.top,
-                  color: Colors.transparent,
+            Positioned(
+              right: 20,
+              bottom: _fabHeight,
+              child: FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.white,
+                child: const Icon(
+                  Icons.gps_fixed,
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 52,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(24, 18, 24, 18),
-              child: Text(
-                'SlidingUpPanel Example',
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, .25))],
+            Positioned(
+              top: 0,
+              child: ClipRRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).padding.top,
+                    color: Colors.transparent,
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              top: 52,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(24, 18, 24, 18),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: const [
+                    BoxShadow(color: Color.fromRGBO(0, 0, 0, .25))
+                  ],
+                ),
+                child: const Text(
+                  'SlidingUpPanel Example',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

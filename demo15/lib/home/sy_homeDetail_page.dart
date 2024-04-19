@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart' as badges;
+import 'package:demo15/home/sy_map_page.dart';
 import 'package:flutter/material.dart';
 
 class SyHomeDetailPage extends StatelessWidget {
@@ -135,7 +136,15 @@ class SyHomeDetailPage extends StatelessWidget {
         child: const Icon(
           Icons.airplanemode_active,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const SyMapPage();
+              },
+            ),
+          );
+        },
       ),
     );
   }
