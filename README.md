@@ -113,3 +113,9 @@
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d18/01.png" width="200" alt="截图" />
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d18/02.png" width="200" alt="截图" />
 </p>
+
+###### demo19 (使用bloc架构项目)
+*****
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d19/01.png" width="200" alt="截图" />
+</p>
