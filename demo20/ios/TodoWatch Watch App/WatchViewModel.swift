@@ -11,7 +11,7 @@ import WatchConnectivity
 //发送数据到手机
 class WatchViewModel: NSObject, ObservableObject {
     var session: WCSession
-    @Published var taskList = [Task(text: "a", status: false),Task(text: "b", status: true)]//[Task]()
+    @Published var taskList = [Task]()
     
     // Add more cases if you have more receive method
     enum WatchReceiveMethod: String {

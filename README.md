@@ -119,3 +119,10 @@
 <p align="left">
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d19/01.png" width="200" alt="截图" />
 </p>
+
+###### demo20 (Apple Watch 与 Flutter iOS App 互相通信)
+*****
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d20/01.png" width="200" alt="截图" />
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d20/02.png" width="200" alt="截图" />
+</p>
