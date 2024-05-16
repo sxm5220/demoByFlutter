@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_client/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_client/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_client/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/linux/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_flutter/windows/flutter/ephemeral/.plugin_symlinks/connectivity_plus/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_server/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_server/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/chirpy_server/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
