@@ -291,7 +291,16 @@ class _CustomCoffeeAppBarState extends State<CustomCoffeeAppBar> {
     return Stack(children: [
       FadeTransition(
         opacity: cupFadeInAnimation,
-        child: const AppBarBackground(),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            bottom: 50.0,
+          ),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(primaryBlueColor),
+            ),
+          ),
+        ),
       ),
       Align(
         alignment: const Alignment(0.5, 0.6),
@@ -310,7 +319,15 @@ class _CustomCoffeeAppBarState extends State<CustomCoffeeAppBar> {
               ),
             )),
       ),
-      const AppBarBottomWhiteBackground(),
+      const Align(
+        alignment: Alignment.bottomCenter,
+        child: Divider(
+          thickness: 60,
+          color: Colors.red,
+          // decoration: const BoxDecoration(color: Colors.blue),
+          // child: const SizedBox(height: 60))
+        ),
+      ),
       SearchForTextWidget(
         cupOpacityAnimation: cupFadeInAnimation,
         textStepAnimation: textStepAnimation,
@@ -435,44 +452,6 @@ class SearchForTextWidget extends StatelessWidget {
               animation: textStepAnimation,
             ),
           )),
-    );
-  }
-}
-
-class AppBarBottomWhiteBackground extends StatelessWidget {
-  const AppBarBottomWhiteBackground({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Align(
-        alignment: Alignment.bottomCenter,
-        child: Divider(
-          thickness: 60,
-          color: Colors.white,
-          // decoration: const BoxDecoration(color: Colors.blue),
-          // child: const SizedBox(height: 60))
-        ));
-  }
-}
-
-class AppBarBackground extends StatelessWidget {
-  const AppBarBackground({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 50.0,
-      ),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Color(primaryBlueColor),
-        ),
-      ),
     );
   }
 }

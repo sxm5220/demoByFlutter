@@ -34,30 +34,23 @@ class _Page1State extends State<Page1> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          InkWell(
-              onTap: () async {
-                controller.forward();
-                await Future.delayed(const Duration(milliseconds: 1000));
-                if (mounted) {
-                  Navigator.push(context, _createRoute())
-                      .then((value) => controller.reset());
-                }
-              },
-              child: const Icon(
-                Icons.search,
-              )),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      appBar: AppBar(),
       body: Column(
         children: [
           SlideTransition(
             position: slideRightAnimation,
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.all(15.0),
-              child: Calendar(),
+              child: InkWell(
+                  onTap: () async {
+                    controller.forward();
+                    await Future.delayed(const Duration(milliseconds: 1000));
+                    if (mounted) {
+                      Navigator.push(context, _createRoute())
+                          .then((value) => controller.reset());
+                    }
+                  },
+                  child: Calendar()),
             ),
           ),
         ],

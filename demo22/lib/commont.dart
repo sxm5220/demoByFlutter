@@ -43,10 +43,10 @@ class Calendar extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(9))),
       width: 50,
       height: 60,
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
+        children: [
           Text("Dec", style: TextStyle(color: Colors.white)),
           Text("19", style: TextStyle(fontWeight: FontWeight.bold))
         ],

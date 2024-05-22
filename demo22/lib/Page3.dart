@@ -46,16 +46,13 @@ class _Page3State extends State<Page3> with SingleTickerProviderStateMixin {
             //   opacity: mainTimeFadeInAnimation,
             child: Column(
               children: [
-                Positioned(
-                  top: 300,
-                  child: BodyMainInfoWidget(
-                    index: widget.index,
-                    controller: controller,
-                  ),
-                ),
-                DetailContent(
+                BodyMainInfoWidget(
                   index: widget.index,
+                  controller: controller,
                 ),
+                SizedBox(
+                    height: 40,
+                    child: Text(sampleContentList[widget.index]["content"]!)),
               ],
               // ),
             )),
@@ -67,34 +64,6 @@ class _Page3State extends State<Page3> with SingleTickerProviderStateMixin {
   void dispose() {
     controller.dispose();
     super.dispose();
-  }
-}
-
-class DetailContent extends StatelessWidget {
-  const DetailContent({
-    super.key,
-    required this.index,
-  });
-
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-              height: 40, child: Text(sampleContentList[index]["content"]!)),
-          const SizedBox(
-              height: 20,
-              child: Text("See more ",
-                  style: TextStyle(fontWeight: FontWeight.bold))),
-        ],
-      ),
-    );
   }
 }
 
@@ -145,74 +114,69 @@ class _BodyMainInfoWidgetState extends State<BodyMainInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Hero(
         tag: "content${widget.index}",
         child: Card(
-          elevation: 10,
+          elevation: 2,
           shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
+              borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    ScaleTransition(
-                      scale: calendarScaleUpAnimation,
-                      child: const Calendar(),
-                    ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: 192,
-                      child: Text(sampleContentList[widget.index]["title"]!,
-                          maxLines: 2,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ScaleTransition(
-                        scale: gpsIconScaleUpFadeInAnimation,
-                        child: const Icon(
-                          Icons.location_pin,
-                          color: Color(primaryRedColor),
-                        )),
-                    const SizedBox(width: 5),
-                    FadeTransition(
-                        opacity: gpsIconScaleUpFadeInAnimation,
-                        child:
-                            Text(sampleContentList[widget.index]["location"]!))
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ScaleTransition(
-                        scale: timerScaleUpFadeInAnimation,
-                        child: const Icon(
-                          Icons.access_time_filled,
-                          color: Color(primaryRedColor),
-                        )),
-                    const SizedBox(width: 5),
-                    FadeTransition(
-                        opacity: timerScaleUpFadeInAnimation,
-                        child: const Text("8:00 AM - 10:00 PM"))
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      ScaleTransition(
+                        scale: calendarScaleUpAnimation,
+                        child: const Calendar(),
+                      ),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: 150,
+                        child: Text(sampleContentList[widget.index]["title"]!,
+                            maxLines: 2,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      ScaleTransition(
+                          scale: gpsIconScaleUpFadeInAnimation,
+                          child: const Icon(
+                            Icons.location_pin,
+                            color: Color(primaryRedColor),
+                          )),
+                      const SizedBox(width: 5),
+                      FadeTransition(
+                          opacity: gpsIconScaleUpFadeInAnimation,
+                          child: Text(
+                              sampleContentList[widget.index]["location"]!))
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ScaleTransition(
+                          scale: timerScaleUpFadeInAnimation,
+                          child: const Icon(
+                            Icons.access_time_filled,
+                            color: Color(primaryRedColor),
+                          )),
+                      const SizedBox(width: 5),
+                      FadeTransition(
+                          opacity: timerScaleUpFadeInAnimation,
+                          child: const Text("8:00 AM - 10:00 PM"))
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
