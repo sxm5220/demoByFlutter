@@ -4,7 +4,7 @@
 ###### demo01
 *****
 <p align="left">
-<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d1/01.mp4" width="200" alt="截图" />
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d1/01.gif" width="200" alt="截图" />
 </p>
 
 
