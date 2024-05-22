@@ -323,7 +323,7 @@ class _CustomCoffeeAppBarState extends State<CustomCoffeeAppBar> {
         alignment: Alignment.bottomCenter,
         child: Divider(
           thickness: 60,
-          color: Colors.red,
+          color: Colors.transparent,
           // decoration: const BoxDecoration(color: Colors.blue),
           // child: const SizedBox(height: 60))
         ),
@@ -356,7 +356,7 @@ class _MenuBarState extends State<MenuBar> {
         alignment: Alignment.bottomCenter,
         child: Container(
           height: 40,
-          width: 200,
+          width: 210,
           decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [

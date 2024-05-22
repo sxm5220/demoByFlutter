@@ -132,4 +132,6 @@
 
 ###### demo22 (动画效果)
 *****
-演示连接：https://pin.it/2DhgRLf6W
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d22/01.gif" width="200" alt="截图" />
+</p>
