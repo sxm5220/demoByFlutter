@@ -134,3 +134,7 @@
 <p align="left">
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d22/01.gif" width="200" alt="截图" />
 </p>
+
+###### demo23 (动画效果)
+*****
+![gif](https://github.com/sxm5220/demoByFlutter/blob/master/pages/d23/01.gif)
