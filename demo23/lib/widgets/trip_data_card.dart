@@ -57,7 +57,7 @@ class TripDataCard extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList()
+            })
           ],
         ),
       ),

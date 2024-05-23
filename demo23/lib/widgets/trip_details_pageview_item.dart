@@ -3,26 +3,91 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../gen/assets.gen.dart';
 import '../models/trip_data.dart';
 
 class TripDetailsPageViewItem extends StatelessWidget {
-  TripDetailsPageViewItem({super.key});
-
-  final tripData = [
+  TripDetailsPageViewItem({super.key, required this.data});
+  final TripData data;
+  final tripDataList = [
     const TripData(
-      title: 'Geo Summary',
-      imagePath:
-          'https://images.pexels.com/photos/2678301/pexels-photo-2678301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      tripAdditionalInfos: [(title: 'Over 11 days', number: '1,457 km')],
-    ),
-    const TripData(
+      id: "3",
+      user: UserData(
+          uid: '3',
+          name: "王维",
+          img:
+              "https://q8.itc.cn/q_70/images03/20240517/71b47444c2aa467eb464c633b088bc87.jpeg"),
       title: 'Media',
+      date: 'May 6-5',
       imagePath:
-          'https://images.pexels.com/photos/3733269/pexels-photo-3733269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          'https://images.pexels.com/photos/1615807/pexels-photo-1615807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       tripAdditionalInfos: [
         (title: 'Photos', number: '257'),
         (title: 'Videos', number: '14'),
+      ],
+      userList: [
+        UserData(
+            uid: "2",
+            name: "白居易",
+            img:
+                "https://q4.itc.cn/q_70/images03/20240405/0fe4005840664f30b76f1a63909a5489.jpeg"),
+        UserData(
+            uid: "1",
+            name: "李白",
+            img:
+                "https://q6.itc.cn/q_70/images03/20240514/edff7fc31d05404cb97be496dd7785d2.jpeg")
+      ],
+    ),
+    const TripData(
+      id: "2",
+      user: UserData(
+          uid: '2',
+          name: "白居易",
+          img:
+              "https://q4.itc.cn/q_70/images03/20240405/0fe4005840664f30b76f1a63909a5489.jpeg"),
+      title: 'SubTree',
+      date: 'May 1-5',
+      imagePath:
+          'https://images.pexels.com/photos/1559908/pexels-photo-1559908.jpeg?auto=compress&cs=tinysrgb&w=600',
+      tripAdditionalInfos: [(title: 'Over 11 days', number: '1,457 km')],
+      userList: [
+        UserData(
+            uid: "3",
+            name: "王维",
+            img:
+                "https://q8.itc.cn/q_70/images03/20240517/71b47444c2aa467eb464c633b088bc87.jpeg"),
+        UserData(
+            uid: "1",
+            name: "李白",
+            img:
+                "https://q6.itc.cn/q_70/images03/20240514/edff7fc31d05404cb97be496dd7785d2.jpeg")
+      ],
+    ),
+    const TripData(
+      id: "1",
+      user: UserData(
+          uid: '1',
+          name: "李白",
+          img:
+              "https://q6.itc.cn/q_70/images03/20240514/edff7fc31d05404cb97be496dd7785d2.jpeg"),
+      title: 'Photos',
+      date: 'May 6-22',
+      imagePath:
+          'https://images.pexels.com/photos/1550348/pexels-photo-1550348.jpeg?auto=compress&cs=tinysrgb&w=600',
+      tripAdditionalInfos: [
+        (title: 'Photos', number: '257'),
+        (title: 'Videos', number: '14'),
+      ],
+      userList: [
+        UserData(
+            uid: "2",
+            name: "白居易",
+            img:
+                "https://q4.itc.cn/q_70/images03/20240405/0fe4005840664f30b76f1a63909a5489.jpeg"),
+        UserData(
+            uid: "3",
+            name: "王维",
+            img:
+                "https://q8.itc.cn/q_70/images03/20240517/71b47444c2aa467eb464c633b088bc87.jpeg"),
       ],
     ),
   ];
@@ -53,23 +118,19 @@ class TripDetailsPageViewItem extends StatelessWidget {
                     separatorBuilder: (context, index) =>
                         const SizedBox(width: 8),
                     scrollDirection: Axis.horizontal,
-                    itemCount: tripData.length,
+                    itemCount: tripDataList.length,
                     itemBuilder: (context, index) =>
-                        TripDataCard(tripData: tripData[index]),
+                        TripDataCard(tripData: tripDataList[index]),
                   ),
                 ),
-                const SizedBox(height: 16),
+                /*const SizedBox(height: 16),
                 const Text('TRIP BOARD', style: TextStyle()),
                 const SizedBox(height: 8),
                 buildMessageRow(
                     message:
                         'What a trip! Thanks for all the memories! Whats next?',
                     imagePath: Assets.images.ellipse53.path),
-                const SizedBox(height: 12),
-                buildMessageRow(
-                    message:
-                        "Folk, that was fun. Next time with better car, not that piece of shit!\nHaha.",
-                    imagePath: Assets.images.ellipse37.path),
+                const SizedBox(height: 12),*/
               ],
             ),
           ),
@@ -134,11 +195,7 @@ class TripDetailsPageViewItem extends StatelessWidget {
             data: ThemeData.dark()
                 .copyWith(textTheme: GoogleFonts.montserratTextTheme()),
             child: Wrap(
-              children: [
-                (name: 'Anne', imagePath: Assets.images.ellipse36.path),
-                (name: 'Mike', imagePath: Assets.images.ellipse39.path),
-                (name: 'Sophia', imagePath: Assets.images.ellipse37.path),
-              ]
+              children: data.userList
                   .map(
                     (e) => Container(
                       margin: const EdgeInsets.only(right: 4),
@@ -155,7 +212,7 @@ class TripDetailsPageViewItem extends StatelessWidget {
                                       fontWeight: FontWeight.w600)),
                             ),
                             avatar: CircleAvatar(
-                              backgroundImage: AssetImage(e.imagePath),
+                              backgroundImage: NetworkImage(e.img),
                             ),
                           ),
                         ),

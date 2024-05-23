@@ -1,19 +1,23 @@
 import 'package:demo23/widgets/trip_details_pageview_item.dart';
 import 'package:flutter/material.dart';
 
-import 'gen/assets.gen.dart';
+import 'models/trip_data.dart';
 
 class TripDetailsPage extends StatelessWidget {
-  const TripDetailsPage({super.key});
+  const TripDetailsPage({super.key, required this.data});
+  final TripData data;
 
   @override
   Widget build(BuildContext context) {
-    return const TripDetailsBody();
+    return TripDetailsBody(
+      data: data,
+    );
   }
 }
 
 class TripDetailsBody extends StatefulWidget {
-  const TripDetailsBody({super.key});
+  const TripDetailsBody({super.key, required this.data});
+  final TripData data;
 
   @override
   State<TripDetailsBody> createState() => _TripDetailsBodyState();
@@ -45,6 +49,12 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
       setState(() {
         offset = _pageController.offset / screenHeight;
       });
+      if (_pageController.offset < -50.0) {
+        if (!_animationController.isAnimating) {
+          _animationController.forward();
+        }
+        // print("🦐 offset==>:$offset --- ${_pageController.offset}");
+      }
     });
 
     _sizeXAnimation = Tween<double>(
@@ -60,16 +70,32 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return NotificationListener<OverscrollNotification>(
-      onNotification: (overscroll) {
-        print("object++::${overscroll.overscroll}");
-        if (overscroll.overscroll < 0.5 &&
-            overscroll.dragDetails != null &&
-            overscroll.metrics.axisDirection == AxisDirection.down) {
-          if (!_animationController.isAnimating) {
-            _animationController.forward();
+    if (offset < 0.0) {
+      offset = 0.0;
+    } else if (offset > 1.0) {
+      offset = 1.0;
+    }
+    // print("😁offset:$offset");
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification is OverscrollNotification) {
+          //print("🌹overscroll.overscroll::${notification.overscroll}");
+          if (notification.overscroll < 0.5 &&
+              notification.dragDetails != null &&
+              notification.metrics.axisDirection == AxisDirection.down) {
+            if (!_animationController.isAnimating) {
+              _animationController.forward();
+            }
           }
+        } else {
+          //print("🍉 overscroll:$notification");
         }
         return true;
       },
@@ -92,7 +118,9 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
                     controller: _pageController,
                     children: [
                       const SizedBox.shrink(),
-                      TripDetailsPageViewItem(),
+                      TripDetailsPageViewItem(
+                        data: widget.data,
+                      ),
                     ],
                   )
                 ],
@@ -122,8 +150,9 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
         Opacity(
           opacity: offset,
           child: IconButton(
-            icon: CircleAvatar(
-              backgroundImage: AssetImage(Assets.images.ellipse36.path),
+            icon: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://q6.itc.cn/q_70/images03/20240514/edff7fc31d05404cb97be496dd7785d2.jpeg'),
             ),
             onPressed: () {},
           ),
@@ -149,11 +178,11 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: 'date',
+                    tag: 'date${widget.data.id}',
                     child: Opacity(
                       opacity: 1 - offset,
                       child: Text(
-                        'May 5-15',
+                        widget.data.date,
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Color.lerp(
                                   Colors.white, Colors.black, offset),
@@ -165,9 +194,9 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
                   FractionallySizedBox(
                     widthFactor: 0.7,
                     child: Hero(
-                      tag: 'title',
+                      tag: 'title${widget.data.id}',
                       child: Text(
-                        'Riding through the lands of the legends',
+                        widget.data.title,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: Color.lerp(
                                   Colors.white, Colors.black, offset),
@@ -190,16 +219,12 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
 
   Wrap _buildUserChips() {
     return Wrap(
-      children: [
-        (name: 'Anne', imagePath: Assets.images.ellipse36.path),
-        (name: 'Mike', imagePath: Assets.images.ellipse39.path),
-        (name: 'Sophia', imagePath: Assets.images.ellipse37.path),
-      ]
+      children: widget.data.userList
           .map(
-            (e) => Container(
+            (user) => Container(
               margin: const EdgeInsets.only(right: 4),
               child: Hero(
-                tag: e.imagePath,
+                tag: "user${widget.data.id}${user.uid}",
                 child: Material(
                   type: MaterialType.transparency,
                   child: Chip(
@@ -217,7 +242,7 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
                     label: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: Text(
-                        e.name,
+                        user.name,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Color.lerp(Colors.white, Colors.black, offset),
@@ -225,7 +250,11 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
                       ),
                     ),
                     avatar: CircleAvatar(
-                      backgroundImage: AssetImage(e.imagePath),
+                      backgroundColor: Colors.white,
+                      child: CircleAvatar(
+                        radius: 9,
+                        backgroundImage: NetworkImage(user.img),
+                      ),
                     ),
                   ),
                 ),
@@ -239,17 +268,16 @@ class _TripDetailsBodyState extends State<TripDetailsBody>
   Positioned _buildBackground() {
     return Positioned.fill(
       child: Hero(
-        tag: 'bg',
+        tag: 'bg${widget.data.id}',
         child: Opacity(
-          opacity: 1 - ((offset >= 0.0 && offset <= 1.0) ? offset : 0),
+          opacity: 1 - offset,
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  Assets.images.pexelsTraceHudson2724664.path,
-                ),
-              ),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(widget.data.imagePath),
+                  colorFilter:
+                      const ColorFilter.mode(Colors.black54, BlendMode.darken)),
             ),
           ),
         ),
