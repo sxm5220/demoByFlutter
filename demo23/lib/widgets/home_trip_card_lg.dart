@@ -15,7 +15,7 @@ class HomeTripCardLg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //print("tag:${data.id} -${data.user.uid}");
+    //print("😁tag:${data.id} -${data.user.uid}");
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.3,
       child: Stack(
@@ -28,8 +28,8 @@ class HomeTripCardLg extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(data.imagePath),
-                  colorFilter:
-                      const ColorFilter.mode(Colors.black54, BlendMode.darken),
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.3), BlendMode.darken),
                 ),
               ),
             ),

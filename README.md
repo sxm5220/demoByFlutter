@@ -138,3 +138,11 @@
 ###### demo23 (动画效果)
 *****
 ![gif](https://github.com/sxm5220/demoByFlutter/blob/master/pages/d23/01.gif)
+
+###### demo24
+*****
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d24/01.png" width="200" alt="截图" />
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d24/02.png" width="200" alt="截图" />
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d24/03.png" width="200" alt="截图" />
+</p>
