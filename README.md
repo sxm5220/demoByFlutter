@@ -149,4 +149,6 @@
 
 ###### demo25 (动画效果)
 *****
-![gif](https://github.com/sxm5220/demoByFlutter/blob/master/pages/d25/01.gif)
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d25/01.gif" width="200" alt="截图" />
+</p>
