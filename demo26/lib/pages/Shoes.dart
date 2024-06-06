@@ -18,6 +18,10 @@ class _ShoesState extends State<Shoes> {
   bool clicked2 = false;
   bool clicked3 = false;
   bool clicked4 = false;
+
+  //TODO：设计错误位置做测试
+  final String _imagePath = Get.arguments[1];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
