@@ -171,3 +171,9 @@
 <p align="left">
 <img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d28/01.png" width="200" alt="截图" />
 </p>
+
+###### demo29 (动画效果)
+*****
+<p align="left">
+<img src="https://github.com/sxm5220/demoByFlutter/blob/master/pages/d29/01.gif" width="200" alt="截图" />
+</p>
